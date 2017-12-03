@@ -3,10 +3,12 @@ from sqlite3 import Error
 import os.path
 
 PATH_TO_DB = "data/data.db"
-
+db = sqlite3.connect(PATH_TO_DB)
+c = db.cursor()
+if os.path.isfile("data.db"):
+    setup_db()
+    
 def setup_db():
-    db = sqlite3.connect(PATH_TO_DB)
-    c = db.cursor()
     q = '''
 CREATE TABLE Item (
    id integer NOT NULL CONSTRAINT Item_pk PRIMARY KEY,
@@ -33,7 +35,7 @@ CREATE TABLE ListItem (
 );
 '''
     c.execute(q)
-    q = ''' CREATE TABLE Catagories (
+    q = ''' CREATE TABLE Catagory (
     id integer NOT NULL CONSTRAINT Catagories_pk PRIMARY KEY,
     name character(50)
 );
@@ -41,7 +43,25 @@ CREATE TABLE ListItem (
     c.execute(q)
     db.commit()
 
+def addItem(catagory, item):
+    q = "INSERT INTO Item VALUES (?, ?);"
+    c.execute(q, (getCatagoryId(catagory), getItemId(item)))
+    db.commit()
     
-if __name__ == '__main__':
-    if not os.path.isfile("data.db"):
-        setup_db()
+def getCatagoryID(name):
+    q = "SELECT id FROM Catagory WHERE name='?';"
+    return c.execute(q, (name)).fetchone()[0]
+
+def getItemID(name):
+    q = "SELECT id FROM Item WHERE name='?';"
+    return c.execute(q, (name)).fetchone()[0]
+
+#gets names only
+def getAllCatagories():
+    q = "SELECT name FROM Catagory;"
+    return c.execute(q).fetchall()
+
+def getAllItems():
+    q = "SELECT name FROM Item;"
+    return c.execute(q).fetchall()
+

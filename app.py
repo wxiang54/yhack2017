@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/update/')
 def update():
-    return william is an idiot part 2
+    return 
 
 @app.route('/add/')
 def add():
