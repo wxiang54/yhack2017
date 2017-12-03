@@ -4,8 +4,8 @@
 <br>
 <br>
 <select name="category" id="category" required>
-  <option value="{{categories[0]}}" selected> {{categories[0]}} </option>
-  {% for cat in categories[1:] %}
+  <option value="{{categories[0][0]}}" selected> {{categories[0][0]}} </option>
+  {% for cat in categories[1:][0] %}
   <option value="{{cat}}">{{cat}}</option>
   {% endfor %}
 </select>

@@ -1,8 +1,0 @@
-{% extends "template.html" %}
-{% block content %}
-Create a category:
-<form method="POST" action="/add-category">
-  <input type="text" name="cat_name">
-  <input type="submit">
-</form>
-{% endblock %}
