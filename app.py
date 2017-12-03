@@ -12,6 +12,10 @@ def update():
 def add():
     return render_template("add.html")
 
+@app.route('/add-category/')
+def add_category():
+    return render_template("")
+
 @app.route('/list/')
 def list():
     return
