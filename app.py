@@ -36,5 +36,6 @@ def manage():
     return render_template('manage.html')
 
 if __name__ == '__main__':
+    if db_utils.needToRegenTables():
+        db_utils.setup_db()
     app.run(debug=True)
-    db_utils.setup_db()

@@ -85,6 +85,10 @@ def getAllItems():
     q = "SELECT name FROM Item ORDER BY name ASC;"
     return c.execute(q).fetchall()
 
+def needToRegenTables():
+    return not c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='Item';").fetchone()
+    
+'''
 if __name__ == "__main__":
 
     if c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='Item';").fetchone():
@@ -101,3 +105,4 @@ if __name__ == "__main__":
         addItem("Xans", "2018-02-02", 2)
     
     c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+'''
