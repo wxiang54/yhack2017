@@ -4,7 +4,7 @@ import os.path
 
 
 PATH_TO_DB = "data/data.db"
-db = sqlite3.connect(PATH_TO_DB)
+db = sqlite3.connect(PATH_TO_DB, check_same_thread=False)
 c = db.cursor()
 
 
