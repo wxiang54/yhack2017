@@ -1,0 +1,17 @@
+
+.big {
+    font-size: 3em;
+    color: red;
+    border: solid 2px black;
+}
+
+.small {
+    font-size: 5em;
+    color: blue;
+    border: dotted 1px green;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 500px;
