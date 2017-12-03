@@ -14,7 +14,7 @@ CREATE TABLE ItemType (
     id integer NOT NULL CONSTRAINT ItemType_pk PRIMARY KEY,
     name varchar(50),
     est_fin_days double,
-    catagories_id integer NOT NULL
+    categories_id integer NOT NULL
 );
 '''
     c.execute(q)
@@ -43,8 +43,8 @@ CREATE TABLE ListItem (
 '''
     c.execute(q)
     q = ''' 
-CREATE TABLE Catagory (
-    id integer NOT NULL CONSTRAINT Catagories_pk PRIMARY KEY,
+CREATE TABLE Category (
+    id integer NOT NULL CONSTRAINT Category_pk PRIMARY KEY,
     name character(50)
 );
 '''
@@ -58,18 +58,18 @@ def addItem(itemName, exp_date, qty):
     db.commit()
 
 #add item type
-def createItem(catagoryName, itemName):
-    q = "INSERT INTO ItemType(name, catagories_id) VALUES (?, ?);"
-    c.execute(q, (itemName, getCatagoryID(catagoryName)))
+def createItem(categoryName, itemName):
+    q = "INSERT INTO ItemType(name, categories_id) VALUES (?, ?);"
+    c.execute(q, (itemName, getCategoryID(categoryName)))
     db.commit()
 
-def createCatagory(name):
-    q = "INSERT INTO Catagory(name) VALUES (?);"
+def createCategory(name):
+    q = "INSERT INTO Category(name) VALUES (?);"
     c.execute(q, (name,))
     db.commit()
     
-def getCatagoryID(name):
-    q = "SELECT id FROM Catagory WHERE name='%s';" % name
+def getCategoryID(name):
+    q = "SELECT id FROM Category WHERE name='%s';" % name
     return c.execute(q).fetchone()[0]
 
 def getItemTypeID(name):
@@ -77,8 +77,8 @@ def getItemTypeID(name):
     return c.execute(q).fetchone()[0]
 
 #gets names only
-def getAllCatagories():
-    q = "SELECT name FROM Catagory ORDER BY name ASC;"
+def getAllCategories():
+    q = "SELECT name FROM Category ORDER BY name ASC;"
     return c.execute(q).fetchall()
 
 def getAllItems():
@@ -91,8 +91,8 @@ if __name__ == "__main__":
         print 'db existed'
     else:
         setup_db()
-        createCatagory("Food")
-        createCatagory("Medicine")
+        createCategory("Food")
+        createCategory("Medicine")
         createItem("Food", "Lettuce")
         createItem("Food", "Tomato")
         createItem("Medicine", "Xans")

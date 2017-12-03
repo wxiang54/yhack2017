@@ -10,7 +10,7 @@ def update():
 
 @app.route('/add/')
 def add():
-    return
+    return render_template("add.html")
 
 @app.route('/list/')
 def list():
@@ -18,11 +18,11 @@ def list():
 
 @app.route('/items/')
 def items():
-    return
+    return render_template("items.html")
 
 @app.route('/manage/')
 def manage():
     return
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
