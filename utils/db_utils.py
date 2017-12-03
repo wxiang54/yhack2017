@@ -42,7 +42,7 @@ CREATE TABLE ListItem (
 );
 '''
     c.execute(q)
-    q = ''' 
+    q = '''
 CREATE TABLE Category (
     id integer NOT NULL CONSTRAINT Category_pk PRIMARY KEY,
     name character(50)
@@ -51,7 +51,7 @@ CREATE TABLE Category (
     c.execute(q)
     db.commit()
 
-    
+
 def addItem(itemName, exp_date, qty):
     q = "INSERT INTO Item(itemtype_id, exp_date, qty) VALUES (?, ?, ?);"
     c.execute(q, (getItemTypeID(itemName), exp_date, qty))
@@ -67,7 +67,7 @@ def createCategory(name):
     q = "INSERT INTO Category(name) VALUES (?);"
     c.execute(q, (name,))
     db.commit()
-    
+
 def getCategoryID(name):
     q = "SELECT id FROM Category WHERE name='%s';" % name
     return c.execute(q).fetchone()[0]
@@ -99,5 +99,5 @@ if __name__ == "__main__":
         createItem("Medicine", "Mol")
         addItem("Tomato", "2017-12-03", 5)
         addItem("Xans", "2018-02-02", 2)
-    
+
     c.execute("SELECT name FROM sqlite_master WHERE type='table';")
