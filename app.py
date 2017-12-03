@@ -1,4 +1,5 @@
 from flask import Flask, session, request, url_for, redirect, render_template
+from utils import db_utils
 
 app = Flask(__name__)
 
