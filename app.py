@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/update/')
 def update():
-    return 
+    return render_template('update.html')
 
 @app.route('/add/')
 def add():
@@ -18,7 +18,7 @@ def add_category():
 
 @app.route('/list/')
 def list():
-    return
+    return render_template('list.html')
 
 @app.route('/items/')
 def items():
@@ -26,7 +26,7 @@ def items():
 
 @app.route('/manage/')
 def manage():
-    return
+    return render_template('manage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
